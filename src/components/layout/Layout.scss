@@ -1,0 +1,13 @@
+@import '../../styles/colors.scss';
+
+.app-layout {
+  min-height: 100vh;
+}
+
+.layout-content {
+  min-height: calc(100vh - 64px - 60px);
+  padding: 24px;
+  background: $background-light;
+  margin-top: 64px;
+}
+

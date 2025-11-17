@@ -1,0 +1,49 @@
+@import '../../styles/colors.scss';
+
+.app-header {
+  background: $primary-color;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 24px;
+}
+
+.logo {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 24px;
+
+  a {
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+}
+
+.header-menu {
+  flex: 1;
+  background: transparent;
+  border-bottom: none;
+  line-height: 64px;
+}
+
+.header-actions {
+  margin-left: auto;
+}
+

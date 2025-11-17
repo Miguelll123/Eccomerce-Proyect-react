@@ -1,0 +1,31 @@
+@import '../styles/colors.scss';
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 200px);
+  padding: 24px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 16px;
+
+  a {
+    color: $primary-color;
+    font-weight: 500;
+  }
+}
+
