@@ -4,11 +4,14 @@
   text-align: center;
   background: $text-primary;
   color: white;
-  padding: 16px 0;
+  padding: 20px 0;
   margin-top: auto;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
 
   p {
     margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
   }
 }
 

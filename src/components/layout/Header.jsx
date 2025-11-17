@@ -1,4 +1,4 @@
-import { Layout, Menu, Button, Space } from 'antd';
+import { Layout, Menu, Button } from 'antd';
 import { HomeOutlined, ShoppingCartOutlined, UserOutlined, LoginOutlined } from '@ant-design/icons';
 import './Header.scss';
 
@@ -39,11 +39,11 @@ function Header() {
           items={menuItems}
           className="header-menu"
         />
-        <Space className="header-actions">
-          <Button type="primary" icon={<LoginOutlined />}>
+        <div className="header-actions">
+          <Button type="primary" icon={<LoginOutlined />} size="default">
             Login
           </Button>
-        </Space>
+        </div>
       </div>
     </AntHeader>
   );
