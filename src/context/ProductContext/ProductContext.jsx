@@ -32,7 +32,7 @@ export const ProductProvider = ({children})=> {
     const response = await axios.get(`${API_BASE_URL}/products`, {withCredentials: true});
     setProducts(response.data)
     } catch(error){
-        setError(error)
+        setError(error.response?.data?.message || error.message || 'Error al cargar los productos')
     } finally {
         setloading(false);
     }
