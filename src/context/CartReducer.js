@@ -6,9 +6,16 @@ const cart = (state,action) => {
                 ...state,
                 cart: [...state.cart, action.payload]
             };
-            default :
+        case 'CLEAR_CART':
+            return {
+                ...state,
+                cart: []
+            };
+        default :
             return state;
-    }
+    };
+
+    
 }
 
 

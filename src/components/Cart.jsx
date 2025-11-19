@@ -5,7 +5,7 @@ import { Card, Col, Row, Spin, Button, Typography } from "antd";
 const { Title } = Typography;
 
 const cart = ()=> {
-    const {cart} = useCart();
+    const {cart, clearCart} = useCart();
     if(cart.length ===0){
         return <div>Todavía no tienes ningun producto </div>
     }
@@ -46,6 +46,7 @@ const cart = ()=> {
     <div className="products-container">
       <Title level={2}>Carrito</Title>
       <Row gutter={[16, 16]}>{cartItem}</Row>
+      <button onClick={()=>clearCart()}>Clear Cart</button>
     </div>
   );
 };
