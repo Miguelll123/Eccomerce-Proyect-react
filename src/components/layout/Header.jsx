@@ -1,6 +1,7 @@
-import { Layout, Menu, Button } from 'antd';
+import { Layout, Menu, Button, Badge } from 'antd';
 import { HomeOutlined, ShoppingCartOutlined, UserOutlined, LoginOutlined } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useCart } from '../../context/ProductContext/CartContext';
 import './Header.scss';
 
 const { Header: AntHeader } = Layout;
@@ -8,6 +9,7 @@ const { Header: AntHeader } = Layout;
 function Header() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { cart } = useCart();
 
   const menuItems = [
     {
@@ -21,7 +23,7 @@ function Header() {
     },
     {
       key: '/cart',
-      icon: <ShoppingCartOutlined />,
+      icon: <Badge count={cart.length}><ShoppingCartOutlined /></Badge>,
       label: 'Carrito',
     },
     {

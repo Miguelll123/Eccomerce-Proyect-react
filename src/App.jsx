@@ -5,6 +5,8 @@ import './App.css';
 import { ProductProvider } from './context/ProductContext/ProductContext';
 import Products from './components/Products';
 import { BrowserRouter,Route,Routes, Navigate } from 'react-router-dom';
+import { CartProvider } from './context/ProductContext/CartContext';
+import Cart from './components/Cart';
 
 function App() {
   return (
@@ -12,14 +14,17 @@ function App() {
     <ConfigProvider locale={esES}>
 
       <ProductProvider>
+        <CartProvider>
         <Layout>
        <Routes>
-        <Route path='/' element={<Navigate to="/products" replace />}/>
+         
         <Route path='/products' element={<Products/>}/>
+        <Route path= "/cart" element ={<Cart/>}/>
         
         </Routes> 
         
          </Layout>
+         </CartProvider>
          </ProductProvider>
          </ConfigProvider>
     </BrowserRouter>

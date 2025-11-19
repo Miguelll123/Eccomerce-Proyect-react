@@ -1,11 +1,13 @@
 import { useProducts } from "../context/ProductContext/ProductContext";
 import { Card, Col, Row, Spin, Button, Typography } from "antd";
 import './Products.scss';
+import { useCart } from "../context/ProductContext/CartContext";
 
 const { Title } = Typography;
 
 export default function Products() {
   const { products, loading, error } = useProducts();
+  const {addToCart} = useCart();
 
   if (loading) {
     return (
@@ -39,7 +41,7 @@ export default function Products() {
                 />
               }
               actions={[
-                <Button type="primary" block>
+                <Button onClick={()=>addToCart(product)} type="primary" block>
                   Añadir al carrito
                 </Button>
               ]}
