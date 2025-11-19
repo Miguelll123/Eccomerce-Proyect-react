@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer,useEffect } from "react";
 import cartReducer from "../CartReducer";
 
 // Creamos el contexto 
@@ -13,12 +13,29 @@ export const useCart = () => {
     return context;
 };
 
+//LOCALSTORAGE
+
+const carttt = ()=> {
+    const storedcart = localStorage.getItem('cart');
+    if (!storedcart || storedcart === "undefined") return [];
+  try {
+    return JSON.parse(storedcart);
+  } catch {
+    return [];
+  }
+};
+
+
 const initialState = {
-    cart:[],
+    cart: carttt(),
 }
 
 export const CartProvider = ({children}) => {
     const [state, dispatch] = useReducer(cartReducer, initialState);
+
+    useEffect (()=>{
+        localStorage.setItem('cart',JSON.stringify(state.cart));
+    },[state.cart]);
 
     const addToCart = (product) => {
         console.log('Agregando producto:', product);
