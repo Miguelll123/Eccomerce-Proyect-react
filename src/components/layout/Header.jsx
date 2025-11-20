@@ -2,6 +2,8 @@ import { Layout, Menu, Button, Badge } from 'antd';
 import { HomeOutlined, ShoppingCartOutlined, UserOutlined, LoginOutlined } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../../context/ProductContext/CartContext';
+import { useState } from 'react';
+import Login from '../Login';
 import './Header.scss';
 
 const { Header: AntHeader } = Layout;
@@ -10,6 +12,7 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const { cart } = useCart();
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
 
   const menuItems = [
     {
@@ -52,11 +55,17 @@ function Header() {
           onClick={handleMenuClick}
         />
         <div className="header-actions">
-          <Button type="primary" icon={<LoginOutlined />} size="default">
+          <Button 
+            type="primary" 
+            icon={<LoginOutlined />} 
+            size="default"
+            onClick={() => setLoginModalOpen(true)}
+          >
             Login
           </Button>
         </div>
       </div>
+      <Login open={loginModalOpen} onClose={() => setLoginModalOpen(false)} />
     </AntHeader>
   );
 }
