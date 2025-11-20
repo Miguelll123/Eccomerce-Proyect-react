@@ -1,8 +1,9 @@
 import { Layout, Menu, Button, Badge } from 'antd';
-import { HomeOutlined, ShoppingCartOutlined, UserOutlined, LoginOutlined } from '@ant-design/icons';
+import { HomeOutlined, ShoppingCartOutlined, UserOutlined, LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../../context/ProductContext/CartContext';
-import { useState } from 'react';
+import { UserContext } from '../../context/AuthContext/UserState';
+import { useState, useContext } from 'react';
 import Login from '../Login';
 import './Header.scss';
 
@@ -12,6 +13,7 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const { cart } = useCart();
+  const { isAuthenticated, logout } = useContext(UserContext);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
 
   const menuItems = [
@@ -55,17 +57,30 @@ function Header() {
           onClick={handleMenuClick}
         />
         <div className="header-actions">
-          <Button 
-            type="primary" 
-            icon={<LoginOutlined />} 
-            size="default"
-            onClick={() => setLoginModalOpen(true)}
-          >
-            Login
-          </Button>
+          {isAuthenticated ? (
+            <Button 
+              type="primary" 
+              icon={<LogoutOutlined />} 
+              size="default"
+              onClick={logout}
+            >
+              Logout
+            </Button>
+          ) : (
+            <Button 
+              type="primary" 
+              icon={<LoginOutlined />} 
+              size="default"
+              onClick={() => setLoginModalOpen(true)}
+            >
+              Login
+            </Button>
+          )}
         </div>
       </div>
-      <Login open={loginModalOpen} onClose={() => setLoginModalOpen(false)} />
+      {!isAuthenticated && (
+        <Login open={loginModalOpen} onClose={() => setLoginModalOpen(false)} />
+      )}
     </AntHeader>
   );
 }

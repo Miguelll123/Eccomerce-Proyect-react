@@ -4,7 +4,7 @@ import { UserContext} from '../context/AuthContext/UserState';
 
 const Login = ({ open, onClose }) => {
     const {login} = useContext(UserContext);
-    const [form] = Form.useForm();
+    const [form] = Form.useForm()
 
     // Detectar si se usa como modal (tiene props open/onClose) o como página completa
     const isModal = open !== undefined;

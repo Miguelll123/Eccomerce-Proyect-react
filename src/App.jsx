@@ -10,6 +10,7 @@ import Cart from './components/Cart';
 import { UserProvider, UserContext } from './context/AuthContext/UserState';
 import Login from './components/Login';
 import { useContext } from 'react';
+import Profile from './components/Profile';
 
 // Componente interno que usa el Context (debe estar dentro del UserProvider)
 function AppContent() {
@@ -30,6 +31,7 @@ function AppContent() {
               <Route path="/" element={<Products/>}/>
               <Route path='/products' element={<Products/>}/>
               <Route path= "/cart" element ={<Cart/>}/>
+              <Route path="/profile" element={<Profile/>}/>
             </Routes> 
           </Layout>
         </CartProvider>

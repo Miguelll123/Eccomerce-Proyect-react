@@ -37,6 +37,45 @@ import userReducer from "./UserReducer";
         console.log(error);
         throw error; // Lanzar el error para que el componente pueda manejarlo
     }
+ };
+
+ const getUserInfo = async ()=>{
+    const token = localStorage.getItem("token");
+    const response = await axios.get(API_URL + "/profile",{
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+    });
+    dispatch({
+        type:"GET_USER_INFO",
+        payload:response.data
+    })
+ };
+
+ const logout = async () => {
+    try {
+        const token = localStorage.getItem("token");
+        await axios.delete(API_URL + "/logout", {
+            headers: {
+                Authorization: token
+            }
+        });
+        
+        // Limpiar el estado
+        dispatch({
+            type: "LOGOUT"
+        });
+        
+        // Limpiar el token del localStorage
+        localStorage.removeItem("token");
+    } catch (error) {
+        console.error('Error en logout:', error);
+        // Aunque falle el logout en el backend, limpiamos el estado local
+        dispatch({
+            type: "LOGOUT"
+        });
+        localStorage.removeItem("token");
+    }
  }
 
 
@@ -46,7 +85,9 @@ import userReducer from "./UserReducer";
             token:state.token,
             user:state.user,
             isAuthenticated:state.isAuthenticated,
-            login
+            login,
+            getUserInfo,
+            logout
         })}
         >
             {children}
